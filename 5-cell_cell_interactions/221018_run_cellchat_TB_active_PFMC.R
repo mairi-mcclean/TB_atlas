@@ -15,7 +15,7 @@ options(stringsAsFactors = FALSE)
 
 ad <- import("anndata", convert = FALSE)
 pd <- import("pandas", convert = FALSE)
-ad_object <- ad$read_h5ad('/Users/carlostalavera-lopez/Downloads/CaiY_activeTB-PBMC_cellchat-ready.log.h5ad')
+ad_object <- ad$read_h5ad('/Users/carlostalavera-lopez/Downloads/CaiY_TB-PFMC_cellchat-ready.log.h5ad')
 
 ### Access expression matrix
 
@@ -56,7 +56,7 @@ cellchat <- filterCommunication(cellchat, min.cells = 3)
 
 df.net <- subsetCommunication(cellchat)
 head(df.net)
-write.table(df.net, sep = ',', row.names = FALSE, '/Users/carlostalavera-lopez/github/TB_cellular_circuits/5-cell_cell_interactions/results/CaiY_activeTB_PBMC_cellchat_net.csv')
+write.table(df.net, sep = ',', row.names = FALSE, '/Users/carlostalavera-lopez/github/TB_cellular_circuits/5-cell_cell_interactions/results/CaiY_activeTB_PFMC_cellchat_net.csv')
 
 ### Infer cell-cell communication
 
@@ -83,7 +83,7 @@ for (i in 1:nrow(mat)) {
 unique(df.net$pathway_name)
 
 options(repr.plot.width = 8, repr.plot.height = 10)
-pathways.show <- c("COLLAGEN")
+pathways.show <- c("ANNEXIN")
 #pathways.show <- c("CXCL")
 netAnalysis_contribution(cellchat, signaling = pathways.show)
 vertex.receiver = seq(1,4) # a numeric vector. 
@@ -103,7 +103,7 @@ ht1 + ht2
 
 options(repr.plot.width = 10, repr.plot.height = 10)
 gg1 <- netAnalysis_signalingRole_scatter(cellchat)
-gg2 <- netAnalysis_signalingRole_scatter(cellchat, signaling = c("PARs", "MHC-I"))
+gg2 <- netAnalysis_signalingRole_scatter(cellchat, signaling = c("ANNEXIN", "MHC-I"))
 gg1 + gg2
 
 
@@ -152,7 +152,7 @@ plotGeneExpression(cellchat, signaling = "CCL")
 
 ### Save object for this session
 
-saveRDS(cellchat, file = "/Users/carlostalavera-lopez/Downloads/CaiY_activeTB-PBMC_cellchat.rds")
+saveRDS(cellchat, file = "/Users/carlostalavera-lopez/Downloads/CaiY_activeTB-PFMC_cellchat.rds")
 sessionInfo()
 
 
