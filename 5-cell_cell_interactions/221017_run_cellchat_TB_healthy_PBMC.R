@@ -127,13 +127,22 @@ options(repr.plot.width = 15, repr.plot.height = 15)
 nPatterns = 5
 cellchat <- identifyCommunicationPatterns(cellchat, pattern = "incoming", k = nPatterns,  width = 10, height = 10)
 
-
-### Sankey plot
+### Sankey plot for outgoing
 
 options(repr.plot.width = 40, repr.plot.height = 22.5)
 netAnalysis_river(cellchat, pattern = "outgoing", font.size = 2.5, font.size.title = 20)
 
 netAnalysis_dot(cellchat, pattern = "outgoing")
+
+pairLR.pathway <- extractEnrichedLR(cellchat, signaling = pathways.show, geneLR.return = FALSE)
+LR.show <- pairLR.pathway[1,] # show one ligand-receptor pair
+
+### Sankey plot for incoming
+
+options(repr.plot.width = 40, repr.plot.height = 22.5)
+netAnalysis_river(cellchat, pattern = "incoming", font.size = 2.5, font.size.title = 20)
+
+netAnalysis_dot(cellchat, pattern = "incoming")
 
 pairLR.pathway <- extractEnrichedLR(cellchat, signaling = pathways.show, geneLR.return = FALSE)
 LR.show <- pairLR.pathway[1,] # show one ligand-receptor pair
