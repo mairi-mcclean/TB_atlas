@@ -15,7 +15,7 @@ options(stringsAsFactors = FALSE)
 
 ad <- import("anndata", convert = FALSE)
 pd <- import("pandas", convert = FALSE)
-ad_object <- ad$read_h5ad('/Users/carlostalavera-lopez/Downloads/CaiY_activeTB-PBMC_cellchat-ready.log.h5ad')
+ad_object <- ad$read_h5ad('/Users/carlostalavera-lopez/Downloads/CaiY_latentTB-PBMC_cellchat-ready.log.h5ad')
 
 ### Access expression matrix
 
@@ -28,6 +28,10 @@ colnames(data.input) <- rownames(py_to_r(ad_object$obs))
 
 meta.data <- py_to_r(ad_object$obs)
 meta <- meta.data
+
+### Normalise data 
+
+#data.input <- normalizeData(data.input, scale.factor = 10000, do.log = TRUE)
 
 ### Create `cellchat` object
 
@@ -56,7 +60,7 @@ cellchat <- filterCommunication(cellchat, min.cells = 3)
 
 df.net <- subsetCommunication(cellchat)
 head(df.net)
-write.table(df.net, sep = ',', row.names = FALSE, '/Users/carlostalavera-lopez/github/TB_cellular_circuits/5-cell_cell_interactions/results/CaiY_activeTB_PBMC_cellchat_net.csv')
+write.table(df.net, sep = ',', row.names = FALSE, '/Users/carlostalavera-lopez/github/TB_cellular_circuits/5-cell_cell_interactions/results/CaiY_latentTB_PBMC_cellchat_net.csv')
 
 ### Infer cell-cell communication
 
@@ -152,7 +156,7 @@ plotGeneExpression(cellchat, signaling = "CCL")
 
 ### Save object for this session
 
-saveRDS(cellchat, file = "/Users/carlostalavera-lopez/Downloads/CaiY_activeTB-PBMC_cellchat.rds")
+saveRDS(cellchat, file = "/Users/carlostalavera-lopez/Downloads/CaiY_latentTB-PBMC_cellchat.log.rds")
 sessionInfo()
 
 
