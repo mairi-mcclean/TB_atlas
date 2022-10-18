@@ -87,7 +87,7 @@ for (i in 1:nrow(mat)) {
 unique(df.net$pathway_name)
 
 options(repr.plot.width = 8, repr.plot.height = 10)
-pathways.show <- c("SELL")
+pathways.show <- c("COLLAGEN")
 #pathways.show <- c("CXCL")
 netAnalysis_contribution(cellchat, signaling = pathways.show)
 vertex.receiver = seq(1,4) # a numeric vector. 
@@ -100,15 +100,16 @@ netVisual_aggregate(cellchat, signaling = pathways.show, layout = "chord")
 
 cellchat <- netAnalysis_computeCentrality(cellchat, slot.name = "netP")
 
-options(repr.plot.width = 10, repr.plot.height = 10)
-gg1 <- netAnalysis_signalingRole_scatter(cellchat)
-gg2 <- netAnalysis_signalingRole_scatter(cellchat, signaling = c("CLEC", "IL16"))
-gg1 + gg2
-
 options(repr.plot.width = 5, repr.plot.height = 5)
 ht1 <- netAnalysis_signalingRole_heatmap(cellchat, pattern = "outgoing", width = 16, height = 20, color.heatmap = "YlGnBu")
 ht2 <- netAnalysis_signalingRole_heatmap(cellchat, pattern = "incoming", width = 16, height = 20, color.heatmap = "YlGnBu")
 ht1 + ht2
+
+options(repr.plot.width = 10, repr.plot.height = 10)
+gg1 <- netAnalysis_signalingRole_scatter(cellchat)
+gg2 <- netAnalysis_signalingRole_scatter(cellchat, signaling = c("PARs", "MHC-I"))
+gg1 + gg2
+
 
 ### Identify global communication patterns
 
@@ -117,6 +118,15 @@ selectK(cellchat, pattern = "outgoing")
 options(repr.plot.width = 15, repr.plot.height = 15)
 nPatterns = 5
 cellchat <- identifyCommunicationPatterns(cellchat, pattern = "outgoing", k = nPatterns,  width = 10, height = 10)
+
+### Identify global communication patterns
+
+selectK(cellchat, pattern = "incoming")
+
+options(repr.plot.width = 15, repr.plot.height = 15)
+nPatterns = 5
+cellchat <- identifyCommunicationPatterns(cellchat, pattern = "incoming", k = nPatterns,  width = 10, height = 10)
+
 
 ### Sankey plot
 
