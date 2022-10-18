@@ -51,7 +51,7 @@ cellchat <- subsetData(cellchat)
 
 cellchat <- identifyOverExpressedGenes(cellchat)
 cellchat <- identifyOverExpressedInteractions(cellchat)
-cellchat <- projectData(cellchat, PPI.mouse)
+cellchat <- projectData(cellchat, PPI.human)
 
 cellchat <- computeCommunProb(cellchat, raw.use = TRUE)
 cellchat <- filterCommunication(cellchat, min.cells = 3)
@@ -87,7 +87,7 @@ for (i in 1:nrow(mat)) {
 unique(df.net$pathway_name)
 
 options(repr.plot.width = 8, repr.plot.height = 10)
-pathways.show <- c("OSM")
+pathways.show <- c("SELL")
 #pathways.show <- c("CXCL")
 netAnalysis_contribution(cellchat, signaling = pathways.show)
 vertex.receiver = seq(1,4) # a numeric vector. 
@@ -102,7 +102,7 @@ cellchat <- netAnalysis_computeCentrality(cellchat, slot.name = "netP")
 
 options(repr.plot.width = 10, repr.plot.height = 10)
 gg1 <- netAnalysis_signalingRole_scatter(cellchat)
-gg2 <- netAnalysis_signalingRole_scatter(cellchat, signaling = c("OSM", "LAMININ"))
+gg2 <- netAnalysis_signalingRole_scatter(cellchat, signaling = c("CLEC", "IL16"))
 gg1 + gg2
 
 options(repr.plot.width = 5, repr.plot.height = 5)
@@ -134,5 +134,10 @@ vertex.receiver = seq(1,4)
 netVisual_individual(cellchat, signaling = pathways.show, pairLR.use = LR.show, layout = "chord")
 
 plotGeneExpression(cellchat, signaling = "CCL")
+
+### Save object for this session
+
+saveRDS(cellchat, file = "/Users/carlostalavera-lopez/Downloads/CaiY_TB-PBMC_cellchat-ready.rds")
+sessionInfo()
 
 
