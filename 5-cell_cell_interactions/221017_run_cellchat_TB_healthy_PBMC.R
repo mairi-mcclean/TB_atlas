@@ -87,7 +87,7 @@ for (i in 1:nrow(mat)) {
 unique(df.net$pathway_name)
 
 options(repr.plot.width = 8, repr.plot.height = 10)
-pathways.show <- c("COLLAGEN")
+pathways.show <- c("CLEC")
 #pathways.show <- c("CXCL")
 netAnalysis_contribution(cellchat, signaling = pathways.show)
 vertex.receiver = seq(1,4) # a numeric vector. 
@@ -152,7 +152,7 @@ LR.show <- pairLR.pathway[1,] # show one ligand-receptor pair
 vertex.receiver = seq(1,4) 
 netVisual_individual(cellchat, signaling = pathways.show, pairLR.use = LR.show, layout = "chord")
 
-plotGeneExpression(cellchat, signaling = "CCL")
+plotGeneExpression(cellchat, signaling = "PARs")
 
 ### Save object for this session
 
