@@ -15,7 +15,7 @@ options(stringsAsFactors = FALSE)
 
 ad <- import("anndata", convert = FALSE)
 pd <- import("pandas", convert = FALSE)
-ad_object <- ad$read_h5ad('/Users/carlostalavera-lopez/Downloads/CaiY_Healthy-PBMC_cellchat-ready.log.h5ad')
+ad_object <- ad$read_h5ad('/Users/carlos.lopez/INBOX/tb_circuits/cellchat_objects/CaiY_Healthy-PBMC_cellchat-ready.log.h5ad')
 
 ### Access expression matrix
 
@@ -60,7 +60,7 @@ cellchat <- filterCommunication(cellchat, min.cells = 3)
 
 df.net <- subsetCommunication(cellchat)
 head(df.net)
-write.table(df.net, sep = ',', row.names = FALSE, '/Users/carlostalavera-lopez/github/TB_cellular_circuits/5-cell_cell_interactions/results/CaiY_Healthy_PBMC_cellchat_net.csv')
+#write.table(df.net, sep = ',', row.names = FALSE, '/Users/carlostalavera-lopez/github/TB_cellular_circuits/5-cell_cell_interactions/results/CaiY_Healthy_PBMC_cellchat_net.csv')
 
 ### Infer cell-cell communication
 
