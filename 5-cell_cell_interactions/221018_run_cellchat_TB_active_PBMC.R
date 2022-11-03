@@ -83,7 +83,7 @@ for (i in 1:nrow(mat)) {
 unique(df.net$pathway_name)
 
 options(repr.plot.width = 8, repr.plot.height = 10)
-pathways.show <- c("ANNEXIN")
+pathways.show <- c("CLEC")
 #pathways.show <- c("CXCL")
 netAnalysis_contribution(cellchat, signaling = pathways.show)
 vertex.receiver = seq(1,4) # a numeric vector. 

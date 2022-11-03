@@ -130,3 +130,6 @@ dmypy.json
 
 # Folders
 data
+
+#Garbage
+.DS_Store
