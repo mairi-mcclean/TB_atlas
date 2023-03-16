@@ -1,4 +1,4 @@
-name: scanpy
+name: scanpy_scvi_local
 channels:
   - conda-forge
 dependencies:
