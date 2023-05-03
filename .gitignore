@@ -129,7 +129,7 @@ dmypy.json
 .pyre/
 
 # Folders
-data/
+/Users/mairi.mcclean/github/sctb/TB_cellular_circuits/data/
 
 #Garbage
 .DS_Store
